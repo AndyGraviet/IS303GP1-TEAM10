@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!--
+    Team 10 Group Project
+    GPA calculator
+    NOTE: NOT OPTIMIZED FOR MOBILE
+
+    Emma Antonucci
+    Evan Gregory
+    Holly Lambert
+    Andrew Graviet
+    Justin Brown
+    Maryn Hansen
+    Styles Weiler
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body{
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .banner{
+            width: 100vw;
+            color: white;
+            max-width: 100vw;
+            
+        }
+
+        #top{
+            background-color: #002E5D;
+            height: 10vh;
+            min-height: fit-content;
+            max-height: fit-content;
+            font-size: 5vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+        }
+
+        #lower{
+            background-color: #0054A8;
+            height: 6vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .headsection{
+            position: relative;
+        }
+
+        .bannertext{
+            margin-left: 7vw;
+            margin-right: 5vw;
+        }
+
+        .mainbody{
+            width: 100vw;
+            height: 84vh;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #002E5D;
+        }
+
+        .left{
+            height: 80vh;
+            width: 30vw;
+            margin-left: 8vh;
+            box-sizing: border-box;
+            padding: 3vh;
+            overflow-y: scroll;
+        }
+
+        .right{
+            height: 80vh;
+            width: 50vw;
+            background-color: #0054A8;
+            margin-right: 10vh;
+            box-sizing: border-box;
+            padding: 2vw;
+            position: relative;
+        }
+
+        input{
+            border-radius: 10px;
+            border: none;
+        }
+
+        select{
+            border-radius: 10px;
+            border: none;
+        }
+
+        .textTitle{
+            font-weight: 600;
+        }
+
+        
+        #website{
+            font-size: 2vh;
+            font-weight: 100;
+            margin-right: 5vw;
+            text-decoration: none;
+            color: white;
+        }
+
+        #website:hover{
+            color:gray;
+        }
+
+        .blurb{
+            overflow: scroll;
+        }
+
+        .right-bottom{
+            width: 100%;
+            height: 45vh;
+            position: absolute;
+            bottom: 0vh;
+            right: 0vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button{
+            width: 10vw;
+            height: 3vh;
+            position: absolute;
+            bottom: 1vh;
+            border: none;
+            border-radius: 4px;
+            background-position: right center; /* change the direction of the change here */
+        }
+
+        button:hover{
+            color:white;
+            background-color: #002E5D;
+
+        }
+
+
+        #left-button{
+            position: absolute;
+            left: 14vw;
+        }
+
+        #right-button{
+            position: absolute;
+            right: 14vw;
+        }
+
+        .text{
+            color: white;
+        }
+
+        #circle{
+            border-radius: 50%;
+            width: 20vh;
+            height: 20vh;
+            background: white;
+            padding: 5vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border:solid 10px #0A94BF;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            -webkit-transition: all 0.5s ease-in;
+            -webkit-animation-name:             rotate; 
+            -webkit-animation-duration:         1.0s; 
+            -webkit-animation-iteration-count:  infinite;
+            -webkit-animation-timing-function: linear;
+            transition: all 0.5s ease-in;
+            animation-name:             rotate; 
+            animation-duration:         3.0s; 
+            animation-iteration-count:  infinite;
+            animation-timing-function: linear; 
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to { 
+                transform: rotate(360deg);
+            }
+        }
+ 
+
+        @-webkit-keyframes rotate {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to { 
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        h2{
+            color: white;
+            position: absolute;
+            top: 10vh;
+            left: 5vw;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        a:hover{
+            color:#0A94BF;
+        }
+
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, .5);
+            box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        }
+
+        
+
+    </style>
+</head>
+<body onload="setFocus()">
+    <div class="headsection">
+        <div class="banner" id="top">
+            <span class="bannertext">BYU INFORMATION SYSTEMS</span>
+            <a id="website" href="https://marriottschool.byu.edu/infosys/" target="_blank">Visit the IS website</a>
+        </div>
+        <div class="banner" id="lower">
+            <span class="bannertext">Grade Calculator</span>
+            <span class="bannertext">Team 10</span>
+        </div>
+    </div>
+    <div class="mainbody">
+        <div class="left">
+            <span class="blurb">
+                <span class="textTitle">Program Overview</span><br>
+                The BS Information Systems program is available as a four-year traditional degree or as a five-year integrated option where students earn 
+                both the BS IS and MISM degrees. The BS IS program is a 64-credit degree including pre-management, junior core, management core, and a capstone.
+                <br><br>
+                <span class="textTitle">Curriculum</span>
+                <br>
+                Information systems students learn to define, develop, and maintain the information system infrastructure that supports the operations of all businesses,
+                 governments, and other institutions. The BS Information Systems degree develops the ability to function effectively as a professional, applying 
+                 state-of-the-art technology in solving business problems. Students are trained in business and information systems and taught to understand complex 
+                 business environments.
+                <br><br>
+                Built on a solid foundation of business courses, the curriculum advances students’ understanding of technologies in the design and development of 
+                information systems. They gain technical expertise in systems analysis; systems design and implementation; database development and management; 
+                programming; telecommunications networking; 2-tier, 3-tier, and n-tier application development; and web application development.
+                <br><br>
+                <span class="textTitle">Why BYU?</span><br>
+                A world yearning for hope and joy needs a different model of university. At Brigham Young University, belief enhances inquiry, study amplifies faith, 
+                and revelation leads to rich understanding. Teaching and research are both valued, and excellence and affordability go hand in hand. As the flagship 
+                higher education institution of The Church of Jesus Christ of Latter-day Saints, BYU strives to be among the exceptional universities in the world and 
+                an essential university for the world.
+                <br><br>
+                <span class="textTitle">Who is Team 10?</span><br>
+                Team 10 is among the most elite in the upcoming applicants for the Information Systems major. Currently, the team consists of: 
+                <a href="https://www.linkedin.com/in/emmanantonucci/" target="_blank">Emma Antonucci,</a>
+                <a href="https://www.facebook.com/evan.gregory.3154" target="_blank">Evan Gregory, </a>
+                <a href="https://www.linkedin.com/in/andrewgraviet/" target="_blank">Andrew Graviet, </a>
+                <a href="https://www.facebook.com/holly.lambert.14" target="_blank">Holly Lambert, </a>
+                <a href="https://www.facebook.com/profile.php?id=100048959385691" target="_blank">Justin Brown, </a>
+                <a href="https://www.linkedin.com/in/maryn-hansen-a41582210/" target="_blank">Maryn Hansen, </a>
+                and
+                <a href="https://www.facebook.com/styles.weiler" target="_blank"> Styles Weiler.</a>
+            </span>
+        </div>
+        <div class="right">
+            <div>
+                <label for="IS201" class="text">IS201</label>
+                <select id="IS201">
+                    <option value="4.0">A</option>
+                    <option value="3.7">A-</option>
+                    <option value="3.4">B+</option>
+                    <option value="3.0">B</option>
+                    <option value="2.7">B-</option>
+                    <option value="2.4">C+</option>
+                    <option value="2.0">C</option>
+                    <option value="1.7">C-</option>
+                    <option value="1.4">D+</option>
+                    <option value="1.0">D</option>
+                    <option value="0.7">D-</option>
+                    <option value="0.0">E</option>
+                </select>
+                <input type="checkbox" class="retake" value="1" id="201-box">
+                <label for="201-box" class="text">Retake</label>
+                <br><br>
+                
+                <label for="IS303" class="text">IS303 || CS142</label>
+                <select name="gender" id="IS303">
+                    <option value="4.0">A</option>
+                    <option value="3.7">A-</option>
+                    <option value="3.4">B+</option>
+                    <option value="3.0">B</option>
+                    <option value="2.7">B-</option>
+                    <option value="2.4">C+</option>
+                    <option value="2.0">C</option>
+                    <option value="1.7">C-</option>
+                    <option value="1.4">D+</option>
+                    <option value="1.0">D</option>
+                    <option value="0.7">D-</option>
+                    <option value="0.0">E</option>
+                </select>
+                <input type="checkbox" class="retake" value="1" id="303-box">
+                <label for="201-box" class="text" >Retake</label>
+                <br><br>
+
+                <label for="ACC200" class="text">ACC200</label>
+                <select name="gender" id="ACC200">
+                    <option value="4.0">A</option>
+                    <option value="3.7">A-</option>
+                    <option value="3.4">B+</option>
+                    <option value="3.0">B</option>
+                    <option value="2.7">B-</option>
+                    <option value="2.4">C+</option>
+                    <option value="2.0">C</option>
+                    <option value="1.7">C-</option>
+                    <option value="1.4">D+</option>
+                    <option value="1.0">D</option>
+                    <option value="0.7">D-</option>
+                    <option value="0.0">E</option>
+                </select>
+                <input type="checkbox" class="retake" value="1" id="200-box">
+                <label for="201-box" class="text">Retake</label>
+                <br><br>
+                <label class="text">BYU Overall GPA:</label>
+                <input type="number" id="overallGPA" placeholder="ex: 4.0 || 3.5 || etc" style="text-align: center">
+                <br><br>
+                <label class="text">BYU Last 30 Credits GPA:</label>
+                <input type="number" id="last30GPA" placeholder="ex: 4.0 || 3.5 || etc" style="text-align: center">
+                <br><br>
+            </div>
+            <div class="right-bottom">
+                <h2>FINAL GPA</h2>
+                <button type="button" class="button2" onclick="calcGPA();" id="left-button">CALCULATE</button>
+                <button type="button" class="button2"  onclick="clearCircle();" id="right-button">RESET</button>
+                <div id="circle"><span id="outputText"></span></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        let iFinalGPA = 0;
+
+        function setFocus(){
+            document.getElementById("IS201").focus();
+        }
+
+        function calcGPA()
+        {
+            
+            
+            //get initial values from the inputs
+            let iIS201Score = document.getElementById("IS201").value;
+            let iIS303Score = document.getElementById("IS303").value;
+            let iAcc200 = document.getElementById("ACC200").value;
+            let iOverallGPA = parseFloat(document.getElementById("overallGPA").value);
+            let iLast30GPA = parseFloat(document.getElementById("last30GPA").value);
+
+
+            if ((iAcc200) && (iFinalGPA > -1) && (iLast30GPA > -1) && (iIS201Score) && (iIS303Score)){
+                //stop the animation
+                document.getElementById("circle").style.animationIterationCount = "0";
+                //factor in the check boxes
+                if (document.getElementById("201-box").checked == true){
+                    iIS201Score -= 0.3;
+                }
+                if (document.getElementById("303-box").checked == true){
+                    iIS303Score -= 0.3;
+                }
+                if (document.getElementById("200-box").checked == true){
+                    iAcc200 -= 0.3;
+                }
+
+                iFinalGPA = (iIS201Score * 0.3) + (iIS303Score * 0.3) + (iAcc200 * 0.05) + (iOverallGPA * 0.15) + (iLast30GPA * 0.2);
+                iFinalGPA = iFinalGPA.toFixed(2);
+                document.getElementById("outputText").innerHTML = iFinalGPA;
+
+                if (iFinalGPA >= 3.7){
+                    document.getElementById("circle").style.border = "1.5vh solid green";
+                }
+                else if ((iFinalGPA < 3.7) && (iFinalGPA > 3.4)){
+                    document.getElementById("circle").style.border = "1.5vh solid yellow";
+                }
+                else{
+                    document.getElementById("circle").style.border = "1.5vh solid red";
+                }
+            }
+
+            else {
+                alert("You must enter values in all the given fields")
+            }
+
+            
+            
+        }
+
+        function clearCircle()
+        {
+            document.getElementById("IS201").value = "";
+            document.getElementById("IS303").value = ""; 
+            document.getElementById("ACC200").value = "";
+            document.getElementById("IS201").selectedIndex = 0;
+            document.getElementById("IS303").selectedIndex = 0;
+            document.getElementById("ACC200").selectedIndex = 0;
+            document.getElementById("overallGPA").value = "";
+            document.getElementById("last30GPA").value = "";
+            document.getElementById("201-box").checked = false;
+            document.getElementById("303-box").checked = false;
+            document.getElementById("200-box").checked = false;
+            document.getElementById("circle").style.border = "10px solid #0A94BF";
+            document.getElementById("circle").style.borderRightColor = "transparent";
+            document.getElementById("circle").style.borderBottomColor = "transparent";
+            document.getElementById("circle").style.animationIterationCount = "infinite";
+            document.getElementById("outputText").innerHTML = "";
+            iFinalGPA = 0;
+            setFocus();   
+        }
+ 
+    </script>
+    
+</body>
+</html>
